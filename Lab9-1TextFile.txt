@@ -1,0 +1,106 @@
+import java.util.Scanner;
+
+
+
+public class StudentMain {
+    /**
+     * @param args
+     */
+ public static void main (String[] args){
+    Scanner scanner;
+    int numberOfStudents; 
+    double GPA;
+    String firstName;
+    String lastName;
+    int i;
+
+    
+    scanner  = new Scanner(System.in);
+  
+    System.out.print("Enter the number of students: ");
+    numberOfStudents = scanner.nextInt();
+    
+     
+    Student [] studentList = new Student [numberOfStudents]; 
+   for (i=0; i < numberOfStudents; ++i) {
+    System.out.print("Enter first name for student #" + (i+1) +":" );
+    firstName = scanner.next();
+    System.out.print("Enter last name of student #" + (i+1) +":");
+    lastName = scanner.next();
+    System.out.print("Enter GPA for student #" + (i+1) +":");
+    GPA = scanner.nextDouble();
+
+    studentList[i] = new Student (lastName, firstName, GPA);
+    studentList[i].setGPA(GPA);
+
+    
+   }
+    
+    for (i=0; i < numberOfStudents; ++i){ 
+     System.out.println(studentList[i].getFirstName() + "  "  + studentList[i].getLastName() +  " GPA: " + studentList[i].getGPA());
+    }
+    
+
+    
+    
+    }
+}
+
+    
+
+
+
+
+
+public class Student {
+  public static final double MIN_GPA = 0.00;
+  public static final double MAX_GPA = 4.00;
+  private String lastname;
+  private String firstname;
+  private double gpa ;
+  
+
+ public Student(String lastnam, String firstnam, double gPa){
+       lastname =  lastnam;
+       firstname = firstnam;
+       gpa = gPa;
+
+    
+ }
+ 
+ 
+  public void setLastName(String lname){
+        lastname = lname;
+  }
+  
+  public String getLastName(){
+        return lastname;
+  }
+  
+  public void setFirstName(String fname){
+        firstname = fname;
+  }
+
+  public String getFirstName(){
+        return firstname;
+
+  }
+  
+  public void setGPA(double studentGPA){
+        if (studentGPA <= MAX_GPA && studentGPA >= MIN_GPA){
+            gpa = studentGPA;
+             }
+        if (studentGPA < 0) {
+                gpa = 0.00;
+            }
+            
+        else if (studentGPA > 4.0) {
+            gpa = 4.0;
+        }
+  }
+
+  public double getGPA(){
+      return gpa;
+  }
+
+}
